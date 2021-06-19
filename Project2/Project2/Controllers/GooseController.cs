@@ -11,15 +11,24 @@ namespace Project2.Controllers
     public class GooseController : ControllerBase
 
     {
-        
-        [HttpGet] //HTTP-get запрос
-        public string Get(string mal) //метод получения запрос
+
+        [HttpPost] //HTTP-get запрос
+        [Route("[action]")]
+        public string Foo(Cat s) //метод получения запрос
         {
-            mal = "lol";
-            return mal;
+            return $"{s.name} хуй, {s.age} 212312";
+
+
         }
+        
+       
        
         
         
+    }
+    public class Cat
+    {
+       public  int age { get; set; }
+       public  string name { get; set; }
     }
 }
