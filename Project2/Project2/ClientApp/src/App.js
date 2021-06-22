@@ -6,6 +6,7 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { goose } from './components/JavaScript';
 import { butterfly } from './components/Butterfly';
+import { dungeon } from './components/Dungeon'
 
 import './custom.css'
 
@@ -20,6 +21,8 @@ export default class App extends Component {
             <Route path='/fetch-data' component={FetchData} />
             <Route path='/JavaScript' component={goose} />
             <Route path='/Butterfly' component={butterfly} />
+
+            <Route path='/Dungeon' component={dungeon} />
 
       </Layout>
     );
