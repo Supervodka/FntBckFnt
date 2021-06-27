@@ -1,5 +1,6 @@
 ﻿import { extend, type } from 'jquery';
 import React, { Component } from 'react';
+import { AddContactComponent } from './AddContactComponent';
 import { Contact } from './Contact';
 
 class ContactModel {
@@ -23,15 +24,20 @@ export class phonebook extends Component {
         
 
         this.state = {
-            currentCount: "Welcome to PhoneBook",
             Contacts: [Contact1, Contact2]
         };
+
+        
+ 
+        
+
+
 
         this.click = this.click.bind(this);
     }
 
     render() {
-;         
+       
         const items = []
         Array.prototype.forEach.call(this.state.Contacts, contactItem => {
             items.push(<Contact item={contactItem} />)
@@ -46,22 +52,20 @@ export class phonebook extends Component {
        
         return (
             <div>
-                <input type="text" id="NumberClient" />
 
-                <input type="text" id="NameClient"/>
+                <AddContactComponent clickHandler={this.click} />
+                
                 {items}
             
-                <input type="button" onClick={this.click} value="Добавить контакт" />
 
             </div>
 
         )
     }
 
-    async click() {
-        let input = document.getElementById("NameClient");
-        let input1 = document.getElementById("NumberClient");
-        this.AddNewContact(input.value, input1.value);
+    async click(a,b) {
+
+        this.AddNewContact(a, b);
     }
 
     AddNewContact(NewName, NewNumber) {
@@ -72,14 +76,16 @@ export class phonebook extends Component {
 
         let data = this.state.Contacts;
 
-        data.push(Contact1)
+        var joined = this.state.Contacts.concat(Contact1);
+        //this.setState({ myArray: joined })
 
+        data.push(Contact1)
         this.SaveOnBack(data)
     }
 
 
     async SaveOnBack(backdata) {
-        const response = await fetch(`PhoneBook/call`,
+        const response = await fetch(`PhoneBook/Call`,
             {
                 headers: {
                     'Content-Type': 'application/json;'
@@ -92,7 +98,14 @@ export class phonebook extends Component {
 
         const data = await response.json();
 
-        this.setState({ Contacts: data});
+
+       let result = data.map(function (obj) {
+            return {
+                ContactName: obj.contactName,
+                ContactNumber: obj.contactNumber,
+            }
+        });
+        this.setState({ Contacts: result});
     }
 }
 

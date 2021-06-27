@@ -13,7 +13,7 @@ namespace Project2.Controllers
     {
         [HttpPost] //HTTP-get запрос
         [Route("[action]")]
-        public List<ContactModel> Call(List<ContactModel> items)
+        public List<ContactModel> Call([FromBody] List<ContactModel> items)
         {
             for (int i = 0; i < items.Count; i++)
             {
