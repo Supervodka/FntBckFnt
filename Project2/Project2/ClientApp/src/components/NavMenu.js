@@ -52,7 +52,7 @@ export class NavMenu extends Component {
                             </NavItem>
 
                             <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/Dungeon">dungeon</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/PhoneBook">phonebook</NavLink>
 
                             </NavItem>
 

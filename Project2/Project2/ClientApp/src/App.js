@@ -6,7 +6,7 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { goose } from './components/JavaScript';
 import { butterfly } from './components/Butterfly';
-import { dungeon } from './components/Dungeon'
+import { phonebook } from './components/PhoneBook'
 
 import './custom.css'
 
@@ -22,7 +22,7 @@ export default class App extends Component {
             <Route path='/JavaScript' component={goose} />
             <Route path='/Butterfly' component={butterfly} />
 
-            <Route path='/Dungeon' component={dungeon} />
+            <Route path='/PhoneBook' component={phonebook} />
 
       </Layout>
     );
