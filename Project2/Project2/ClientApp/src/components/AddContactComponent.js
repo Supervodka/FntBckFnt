@@ -12,14 +12,14 @@ export class AddContactComponent extends Component {
 
         return (
             <div>
-                <input type="text" id="NumberClient" />
+                <input type="text" id="NumberClient" />           //поле ввода номер
 
-                <input type="text" id="NameClient" />
+                <input type="text" id="NameClient" />             // поле ввода имя
                 
 
-                <input type="button" onClick={this.click.bind(this)} value="Добавить контакт" />
+                <input type="button" onClick={this.click.bind(this)} value="Добавить контакт" />         {/*{*/батон закрепленный на методе добавления данных */}*/}
 
-                {/*<button onClick={this.props.clickHandler}>*/}
+               
 
 
             </div>
@@ -28,12 +28,11 @@ export class AddContactComponent extends Component {
     }
 
 
-        async click() {
-            let input = document.getElementById("NameClient");
+        async click() {                                                        //вызов клик
+            let input = document.getElementById("NameClient");                  // введенные данные передаются в инпут 1 и инпут 2 соотвественно по присвоенному им айди
             let input1 = document.getElementById("NumberClient");
 
-            this.props.clickHandler(input.value, input1.value)
-        }
+            this.props.clickHandler(input.value, input1.value)                            //типо кликхендлер несет в себе данные двух valuе?        }
 
     }
 

@@ -8,10 +8,10 @@ export class Contact extends Component {
     }
     render() {
         return (
-            <div style={{ backgroundColor: "red", margin: "10px" }}>
-                <h1>Contact {this.props.item.ContactName}</h1>
-                <h2>Contact {this.props.item.ContactNumber}</h2>
-                <p> Contact </p>
+            <div style={{ backgroundColor: "red", margin: "10px" }}>                        {/*то ,что из себя будет представлять объект Contact*/}
+                <h1>Contact {this.props.item.ContactName}</h1>                              {/*//два заголовка с имя номер*/}
+                < h2 > Contact {this.props.item.ContactNumber}</h2>                            {/*и чето вручную прописанное*/}
+                <p> Contact </p>                                                            
 
             </div>
         );
