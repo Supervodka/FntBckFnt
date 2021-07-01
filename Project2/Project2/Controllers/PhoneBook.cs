@@ -15,19 +15,57 @@ namespace Project2.Controllers
         [Route("[action]")]
         public List<ContactModel> Call([FromBody] List<ContactModel> items)        // коллекция а потом данные берутся из тела запроса и передаются в коллекцию айтемс
         {
-            for (int i = 0; i < items.Count; i++)                                //перечисляем все обьекты айтемс
+
+            using (ContactContext db = new ContactContext())
             {
-                if (!items[i].ContactName.Contains("Saved"))                      //если айтемс не saved
+                db.Contacts.AddRange(items);
+               
+                db.SaveChanges();
+                Console.WriteLine("Объекты успешно сохранены");
+
+
+                for (int i = 0; i < items.Count; i++)                                //перечисляем все обьекты айтемс
                 {
-                    items[i].ContactName = $"{items[i].ContactName} Saved";       // пиши saved
+                    if (!items[i].ContactName.Contains("Saved"))                      //если айтемс не saved
+                    {
+                        items[i].ContactName = $"{items[i].ContactName} Saved";       // пиши saved
+                    }
                 }
+                return items;                                                        //и вяртай взад
             }
-            return items;                                                        //и вяртай взад
-        } 
+        }
+
+
+        [HttpGet] //определяет которое поддерживает ХТТП пост метод
+        [Route("[action]")]
+
+        public List<ContactModel> GetAll()
+        {
+            using (ContactContext db = new ContactContext())
+               return db.Contacts.ToList();
+
+                
+        }
 
 
 
-        
+        [HttpDelete] //определяет которое поддерживает ХТТП пост метод
+        [Route("[action]")]
+        public  void  RemoveById(int id)
+        {
+            using (ContactContext db = new ContactContext())
+            {
+                var c = (db.Contacts.First(x => x.Id == id));
+                db.Contacts.Remove(c);
+
+            }
+
+            
+                
+
+
+        }
     }
     
+
 }
