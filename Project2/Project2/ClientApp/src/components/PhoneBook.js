@@ -58,7 +58,7 @@ export class phonebook extends Component {  //наследованный кла�
 
         const items = []                //создаем массив айтемов,внутри которых будут контакты
         Array.prototype.forEach.call(this.state.Contacts, contactItem => {   //типо мы перечисляем все контакты,а потом три раза ContactItem
-            items.push(<Contact item={contactItem} remove={this.Remove} />)                       //ы
+            items.push(<Contact item={contactItem} remove={this.Remove.bind(this)} />)                       //ы
         });
 
 
@@ -95,10 +95,6 @@ export class phonebook extends Component {  //наследованный кла�
 
         let data = this.state.Contacts;       //тут вопрос раз мы чето изменили,то почему без Setstate
 
-        var joined = this.state.Contacts.concat(Contact1);  //создание переменной через которую мы будем вызывать копию массива старого и нового 
-        // после обьединения?
-
-
         data.push(Contact1)                     //пушим данные Контакт 1,кста почему если есть переменная после слияния,или мы пушим контакт в дату? бле :(
         this.SaveOnBack(data)                   //вызываем метод 
     }
@@ -129,11 +125,21 @@ export class phonebook extends Component {  //наследованный кла�
         this.setState({ Contacts: result });           //изменяем состояние Contacts докидывая в нее result
     }
 
-    async Remove(Id) {
-        let data = this.state.Contacts; // wtf
-        let a = data.filter(e => !e.Id.includes(Id))
-        this.setState({ Contacts: a });
+    Hui = 7
 
-        alert(Id)
+    Remove(id) {
+        let massivAfterFiltration=[]
+
+        Array.prototype.forEach.call(this.state.Contacts, contactItem => {
+
+            if (contactItem.Id !== id) {
+                massivAfterFiltration.push(contactItem)
+                
+            }
+
+        });
+
+        this.setState({ Contacts: massivAfterFiltration });
+        this.forceUpdate()
     };
 }
