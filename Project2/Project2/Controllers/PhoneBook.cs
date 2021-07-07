@@ -43,7 +43,7 @@ namespace Project2.Controllers
         [HttpGet] //определяет которое поддерживает ХТТП пост метод
         [Route("[action]")]
 
-        public List<ContactModel> Get (ContactModel contact)
+        public List<ContactModel> Get ( ContactModel contact)
         {
             using (ContactContext db = new ContactContext())
             {
@@ -76,7 +76,7 @@ namespace Project2.Controllers
         {
             using (ContactContext db = new ContactContext())
             {
-                var c = (db.Contacts.Where(c => c.ContactName.Contains(name)));
+                var c = (db.Contacts.Where(c => c.ContactName.Contains(name)).ToList());
                
 
                 return (List<ContactModel>)c;

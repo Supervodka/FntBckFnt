@@ -27,7 +27,7 @@ export class phonebook extends Component {  //наследованный кла�
 
     async initialize() {
 
-        const response = await fetch(`PhoneBook/GetAll`,       // запрос на бэк по указанному маршруту
+        const response = await fetch(`PhoneBook/Get`,       // запрос на бэк по указанному маршруту
             {
                 headers: {
                     'Content-Type': 'application/json;'      //указываем что это обьект ,типо?
@@ -101,7 +101,7 @@ export class phonebook extends Component {  //наследованный кла�
 
 
     async SaveOnBack(backdata) {                             //вызов метода с параметром,как я понимаю бэкдата то что пришло с контроллера?
-        const response = await fetch(`PhoneBook/Call`,       // запрос на бэк по указанному маршруту
+        const response = await fetch(`PhoneBook/Update`,       // запрос на бэк по указанному маршруту
             {
                 headers: {
                     'Content-Type': 'application/json;'      //указываем что это обьект ,типо?
