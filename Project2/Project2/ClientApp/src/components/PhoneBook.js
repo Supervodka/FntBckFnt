@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { AddContactComponent } from './AddContactComponent';
 import { Contact } from './Contact';
+//import {ContactService} from '../services/ContactService'
 
 class ContactModel {  //cоздаем дата класс
     ContactName ;   //первое свойство
@@ -27,30 +28,7 @@ export class phonebook extends Component {  //наследованный кла�
 
     async initialize() {
 
-        const response = await fetch(`PhoneBook/Get`,       // запрос на бэк по указанному маршруту
-            {
-                headers: {
-                    'Content-Type': 'application/json;'      //указываем что это обьект ,типо?
-                },
-
-                method: 'Get',                             //режим запроса post
-
-
-            });
-
-        const data = await response.json();          //ждем возвращение обьекта жейсон
-
-
-        let result = data.map(function (obj) {          //создаем переменную и присваиваем ей значение массива который создает функция мар с функцией 
-            return {                                    //с обьектами внутри?
-                ContactName: obj.contactName,             //возвращаем в резалт два обьекта класса к которым мы еще прибавили saved?
-                ContactNumber: obj.contactNumber,
-                Id: obj.id,
-            }
-        });
-        this.setState({ Contacts: result });
-
-
+        //this.setState({ Contacts: ContactService.Get() });
 
     }
 

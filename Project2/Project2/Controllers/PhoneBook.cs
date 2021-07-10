@@ -33,7 +33,7 @@ namespace Project2.Controllers
 
         [HttpGet] //определяет которое поддерживает ХТТП пост метод
         [Route("[action]")]
-        public List<ContactModel> Get ( ContactModel contact)
+        public List<ContactModel> Get ()
         {
             using var db = new ContactContext();
 
