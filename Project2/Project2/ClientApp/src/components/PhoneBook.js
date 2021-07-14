@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { AddContactComponent } from './AddContactComponent';
 import { Contact } from './Contact';
-//import {ContactService} from '../services/ContactService'
+import ContactService from '../servies/ContactService'
 
 class ContactModel {  //cоздаем дата класс
     ContactName ;   //первое свойство
@@ -74,36 +74,15 @@ export class phonebook extends Component {  //наследованный кла�
         let data = this.state.Contacts;       //тут вопрос раз мы чето изменили,то почему без Setstate
 
         data.push(Contact1)                     //пушим данные Контакт 1,кста почему если есть переменная после слияния,или мы пушим контакт в дату? бле :(
-        this.SaveOnBack(data)                   //вызываем метод 
+        this.AddNew(data)                   //вызываем метод 
     }
 
 
-    async SaveOnBack(backdata) {                             //вызов метода с параметром,как я понимаю бэкдата то что пришло с контроллера?
-        const response = await fetch(`PhoneBook/Update`,       // запрос на бэк по указанному маршруту
-            {
-                headers: {
-                    'Content-Type': 'application/json;'      //указываем что это обьект ,типо?
-                },
+    async AddNew(backdata) {                             //вызов метода с параметром,как я понимаю бэкдата то что пришло с контроллера?
+        const response = ContactService.Add(backdata);
 
-                method: 'POST',                             //режим запроса post
-                body: JSON.stringify(backdata)
-
-            });
-
-        const data = await response.json();          //ждем возвращение обьекта жейсон
-
-
-        let result = data.map(function (obj) {          //создаем переменную и присваиваем ей значение массива который создает функция мар с функцией 
-            return {                                    //с обьектами внутри?
-                ContactName: obj.contactName,             //возвращаем в резалт два обьекта класса к которым мы еще прибавили saved?
-                ContactNumber: obj.contactNumber,
-                ContactId: obj.Id,
-            }
-        });
-        this.setState({ Contacts: result });           //изменяем состояние Contacts докидывая в нее result
+        this.setState({ Contacts: response });           //изменяем состояние Contacts докидывая в нее result
     }
-
-    Hui = 7
 
     Remove(id) {
         let massivAfterFiltration=[]
@@ -119,5 +98,6 @@ export class phonebook extends Component {  //наследованный кла�
 
         this.setState({ Contacts: massivAfterFiltration });
         this.forceUpdate()
+        
     };
 }
