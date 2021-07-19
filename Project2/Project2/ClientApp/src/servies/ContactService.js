@@ -1,11 +1,12 @@
 ﻿
 import { extend, type } from 'jquery';
+export function Add(contact);
 
 export default class ContactService {
     controllerName= 'PhoneBook'
     
    RepeaterCode(response){
-    const data = await response.json();
+    const data =  response.json();
 
     let result= data.map(function(obj) {
         return {
@@ -43,7 +44,7 @@ export default class ContactService {
         
     }
 
-    async Add (contact){
+   export  async Add (contact){
         const response = await fetch (`${this.controllerName}/AddNew`,
         {
             headers :{

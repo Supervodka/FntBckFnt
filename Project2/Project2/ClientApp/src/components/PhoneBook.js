@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { AddContactComponent } from './AddContactComponent';
 import { Contact } from './Contact';
-import ContactService from '../servies/ContactService'
+import ContactService from '../servies/ContactService';
+import function Add from '../servies/ContactService';
 
 class ContactModel {  //cоздаем дата класс
     ContactName ;   //первое свойство
